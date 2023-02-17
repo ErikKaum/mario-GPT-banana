@@ -1,3 +1,4 @@
+import torch
 from mario_gpt.lm import MarioLM
 from mario_gpt.utils import convert_level_to_png 
 from io import BytesIO
@@ -7,7 +8,8 @@ import base64
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
     global model
-    model = MarioLM().to("cuda")
+    device = torch.device('cuda')
+    model = MarioLM().to(device=device)
 
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
