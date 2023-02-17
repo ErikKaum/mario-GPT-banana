@@ -1,0 +1,11 @@
+{
+    "name": "Mario GPT",
+    "category": "Computer Vision",
+    "example_input": {
+        "prompt": "a lot of pipes"
+    },
+    "example_output": {
+        "image": "<BASE64_IMAGE>"
+    },
+    "version": "1"
+}

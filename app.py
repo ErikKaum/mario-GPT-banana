@@ -33,7 +33,7 @@ def inference(model_inputs:dict) -> dict:
 
     generated_level = mario_lm.sample(
         prompts=prompt,
-        num_steps=1399, # change later
+        num_steps=100, # change later
         temperature=2.0,
         use_tqdm=True
     )
@@ -50,4 +50,4 @@ def inference(model_inputs:dict) -> dict:
 
 
     # Return the results as a dictionary
-    return image_base64
+    return { "image": image_base64}
