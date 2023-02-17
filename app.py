@@ -1,7 +1,5 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 from mario_gpt.lm import MarioLM
-from mario_gpt.utils import convert_level_to_png, view_level
+from mario_gpt.utils import convert_level_to_png 
 from io import BytesIO
 import base64
 
@@ -11,15 +9,12 @@ def init():
     global model
     
     model = MarioLM().to("cuda")
-    model.load_pretrained_lm()
-    model.load_pretrained_tokenizer()
 
 
 # Inference is ran for every server call
 # Reference your preloaded global model variable here.
 def inference(model_inputs:dict) -> dict:
     global model
-    
 
     # Parse out your arguments
     prompt = model_inputs.get('prompt', None)
@@ -27,10 +22,9 @@ def inference(model_inputs:dict) -> dict:
         return {'message': "No prompt provided"}
     
     # Run the model
-
     generated_level = model.sample(
         prompts=prompt,
-        num_steps=1400, # change later
+        num_steps=699,
         temperature=2.0,
         use_tqdm=True
     )

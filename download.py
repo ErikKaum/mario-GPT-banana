@@ -4,10 +4,12 @@
 # In this example: A Huggingface BERT model
 
 from transformers import pipeline
+from mario_gpt.lm import MarioLM
 
 def download_model():
-    # do a dry run of loading the huggingface model, which will download weights
-    pipeline(model='shyamsn97/Mario-GPT2-700-context-length')
+    
+    # this will download all the weights
+    MarioLM()
 
 if __name__ == "__main__":
     download_model()
