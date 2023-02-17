@@ -39,7 +39,7 @@ def inference(model_inputs:dict) -> dict:
 
     print(generated_level.shape)
 
-    img = convert_level_to_png(generated_level.squeeze(), TILE_DIR, mario_lm.tokenizer)[0]
+    img = convert_level_to_png(generated_level.squeeze(), TILE_DIR, model.tokenizer)[0]
 
     buffered = BytesIO()
     img.save(buffered,format="PNG")
