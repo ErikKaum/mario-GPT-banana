@@ -8,11 +8,11 @@ import base64
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
-    global mario_lm
+    global model
     
-    mario_lm = MarioLM()#.to("cuda")
-    mario_lm.load_pretrained_lm()
-    mario_lm.load_pretrained_tokenizer()
+    model = MarioLM()#.to("cuda")
+    model.load_pretrained_lm()
+    model.load_pretrained_tokenizer()
 
 
 # Inference is ran for every server call
@@ -28,7 +28,7 @@ def inference(model_inputs:dict) -> dict:
     
     # Run the model
 
-    generated_level = mario_lm.sample(
+    generated_level = model.sample(
         prompts=prompt,
         num_steps=1400, # change later
         temperature=2.0,
