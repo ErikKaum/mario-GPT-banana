@@ -8,14 +8,11 @@ import base64
 # Init is ran on server startup
 # Load your model to GPU as a global variable here using the variable name "model"
 def init():
-    global model
-    global tokenizer
     global mario_lm
     
-    device = 0 if torch.cuda.is_available() else -1
-    tokenizer = AutoTokenizer.from_pretrained("shyamsn97/Mario-GPT2-700-context-length")
-    model = AutoModelForCausalLM.from_pretrained("shyamsn97/Mario-GPT2-700-context-length")
-    mario_lm = MarioLM(model, tokenizer).to("cuda")
+    mario_lm = MarioLM()#.to("cuda")
+    mario_lm.load_pretrained_lm()
+    mario_lm.load_pretrained_tokenizer()
 
 
 # Inference is ran for every server call
@@ -33,7 +30,7 @@ def inference(model_inputs:dict) -> dict:
 
     generated_level = mario_lm.sample(
         prompts=prompt,
-        num_steps=100, # change later
+        num_steps=1400, # change later
         temperature=2.0,
         use_tqdm=True
     )
@@ -50,4 +47,4 @@ def inference(model_inputs:dict) -> dict:
 
 
     # Return the results as a dictionary
-    return { "image": image_base64}
+    return { "image": image_base64 }
