@@ -10,7 +10,7 @@ import base64
 def init():
     global model
     
-    model = MarioLM()#.to("cuda")
+    model = MarioLM().to("cuda")
     model.load_pretrained_lm()
     model.load_pretrained_tokenizer()
 
